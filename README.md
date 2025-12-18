@@ -215,7 +215,7 @@ LSTM:
 
 ### 1. Change Sequence Length
 ```python
-MAX_LEN = 300
+MAX_LEN = 200
 ```
 
 ### 2. Change Vocabulary Size
