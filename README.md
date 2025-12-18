@@ -271,6 +271,121 @@ seaborn
 beautifulsoup4
 requests
 ```
+---
+
+## Part 2 — Text Generation with Transformers (GPT-2)
+
+### Objective
+
+The goal of Part 2 is to **fine-tune a pre-trained Transformer model (GPT-2)** and use it to **generate a coherent paragraph from a given input sentence**.
+
+---
+
+### Dataset Choice
+
+For text generation, the **WikiText-103** dataset is used.
+
+Reasons for this choice:
+- Clean, encyclopedic English text
+- Paragraph-level structure
+- Widely used benchmark for language modeling
+- No offensive or unsafe content
+- Well suited for paragraph continuation tasks
+
+A subset of **20,000+ paragraphs** is extracted and used for fine-tuning.
+
+---
+
+### Dataset Preparation (Part 2)
+
+- Empty and very short lines are removed
+- Each paragraph is explicitly delimited using GPT-2’s end-of-text token:
+
+  <|endoftext|>
+  [Paragraph text]
+  <|endoftext|>
+
+This enforces clear boundaries and improves generation coherence.
+
+---
+
+### Model Used (Part 2)
+
+- **GPT-2 (small, 124M parameters)**
+- Loaded from Hugging Face Transformers
+- Fine-tuned using causal language modeling
+- Training performed on GPU (Kaggle P100)
+
+---
+
+### Training Setup
+
+Key settings:
+- Block size: 128 tokens
+- Learning rate: 2e-5
+- Epochs: 3
+- Mixed precision (FP16)
+- AdamW optimizer
+
+---
+
+### Text Generation
+
+After fine-tuning, the model generates new paragraphs given an initial prompt, for example:
+
+"Artificial intelligence is transforming modern society by ..."
+
+Generation is performed using controlled decoding:
+- Temperature and nucleus sampling (top-p)
+- Repetition penalty to reduce redundancy
+
+---
+
+### Observations & Limitations
+
+- Generated text is generally coherent and on-topic
+- Some factual inaccuracies and awkward phrasing remain
+- These limitations are inherent to autoregressive language models such as GPT-2, which generate text based on statistical patterns rather than factual reasoning
+
+This behavior is expected and discussed in the analysis.
+
+---
+
+## Technologies Used
+
+- Python
+- PyTorch
+- TensorFlow / Keras
+- Hugging Face Transformers
+- Hugging Face Datasets
+- NLTK
+- Scikit-learn
+- Matplotlib
+- BeautifulSoup
+- Requests
+
+---
+
+## Running the Project
+
+The project is designed to run on **Kaggle notebooks with GPU enabled**.
+
+Steps:
+1. Create a new Kaggle notebook
+2. Enable GPU (P100)
+3. Upload the notebooks
+4. Run all cells in order
+
+---
+
+## Key Takeaways
+
+- Arabic NLP requires careful preprocessing to preserve semantics
+- RNN variants (especially LSTM and GRU) outperform vanilla RNNs on long text
+- Transformer-based models generate fluent text but may hallucinate facts
+- Dataset quality and structure are critical for meaningful fine-tuning
+
+---
 
 ## Contributing
 
@@ -293,6 +408,7 @@ Boudribila Kaoutar
 - Arabic NLP community
 - TensorFlow and Keras teams
 - Kaggle for providing free GPU resources
+- Hugging Face for Transformers and Datasets
 
 ---
 
