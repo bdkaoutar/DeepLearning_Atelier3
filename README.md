@@ -412,13 +412,4 @@ Boudribila Kaoutar
 
 ---
 
-## Quick Start Command
-
-```python
-# In Kaggle notebook, simply run:
-# 1. Copy the complete notebook code
-# 2. Run all cells
-# 3. View results and visualizations
-```
-
 **Happy Coding!**
